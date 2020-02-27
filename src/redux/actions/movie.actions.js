@@ -25,7 +25,6 @@ const getMovie = id => async dispatch => {
 const searchMovies = searchText => async dispatch => {
   try {
     const response = await MovieService.searchMovie(searchText);
-    console.log(response.data);
     dispatch(searchMoviesSuccess(response.data));
   } catch (err) {
     console.log(err);

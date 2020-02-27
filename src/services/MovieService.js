@@ -43,11 +43,11 @@ const saveWatchLaterMovie = (email, omDBId, poster) => {
 };
 
 const getWatchLaterMovies = () => {
-  //simulate a service
-  /* return new Promise((accept, reject) => {
-      accept('todo ok');
-    }); */
-  return axios.get("http://localhost:8082/api/watch-later/all-watch-later");
+  return axios.get("http://192.168.0.17:8082/api/watch-later/all-watch-later");
+};
+
+const getFavouriteMovies = () => {
+  return axios.get("http://192.168.0.17:8082/api/favorites-movies");
 };
 
 const deleteWatchLaterMovie = id => {
@@ -91,6 +91,8 @@ const calculateRate = (imdbID, rateValue) => {
 };
 
 export default {
+  getFavouriteMovies,
+  getWatchLaterMovies,
   getMovie,
   searchMovie,
   getMovieDetail,
