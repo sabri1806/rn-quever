@@ -43,29 +43,36 @@ const MainTabs = createBottomTabNavigator(
           return (
             <Image
               source={require("./assets/search.png")}
-              style={{ width: 40, height: 40 }}
+              style={{
+                width: 40,
+                height: 40,
+                marginBottom: -10
+              }}
             />
           );
         } else if (routeName === "WatchLater") {
           return (
             <Image
               source={require("./assets/watchLater.png")}
-              style={{ width: 40, height: 40 }}
+              style={{ width: 30, height: 30 }}
             />
           );
         } else {
           return (
             <Image
               source={require("./assets/favourites.png")}
-              style={{ width: 40, height: 40 }}
+              style={{ width: 30, height: 30 }}
             />
           );
         }
       }
     }),
     tabBarOptions: {
-      activeTintColor: "#000",
-      activeBackgroundColor: "#fff",
+      activeTintColor: "#fff",
+      labelStyle: {
+        fontSize: 14
+      },
+      activeBackgroundColor: "#00f",
       inactiveTintColor: "#263238"
     }
   }
