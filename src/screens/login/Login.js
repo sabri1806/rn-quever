@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, View, Button, StyleSheet, Image } from "react-native";
 import { NavigationActions } from "react-navigation";
 import * as Google from "expo-google-app-auth";
 // import { Image } from "react-native-elements";
 
 const Login = ({ navigation }) => {
+  //TODO: remove after development
+  useEffect(() => {
+    navigation.navigate("App");
+  }, []);
+
   const signInWithGoogleAsync = async () => {
     try {
       const result = await Google.logInAsync({

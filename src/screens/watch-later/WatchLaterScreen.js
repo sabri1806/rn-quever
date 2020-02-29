@@ -17,12 +17,6 @@ const WatchLaterScreen = ({ navigation }) => {
   const [watchLaterMovies, setWatchLaterMovies] = useState([]);
 
   useEffect(() => {
-    if (!navigation.getParam("user")) {
-      navigation.navigate("Login");
-    }
-  }, []);
-
-  useEffect(() => {
     MovieService.getWatchLaterMovies()
       .then(({ data }) => {
         setWatchLaterMovies(data);

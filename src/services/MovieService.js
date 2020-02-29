@@ -4,7 +4,7 @@ const API_KEY = "9c38b7d";
 
 //get all favorite-movies
 const getMovie = id => {
-  return axios.get("http://localhost:8082/api/favorites-movies/" + id);
+  return axios.get("https://quever-api.appspot.com/api/favorites-movies/" + id);
 
   //   .then(res => {
   //      console.log("Print-showMovieDetails-API-response: " + res.data);
@@ -37,24 +37,27 @@ const saveWatchLaterMovie = (email, omDBId, poster) => {
   };
   console.log(payload);
   return axios.post(
-    `http://localhost:8082/api/watch-later/add-watch-later-movie`,
+    `https://quever-api.appspot.com/api/watch-later/add-watch-later-movie`,
     payload
   );
 };
 
 const getWatchLaterMovies = () => {
-  return axios.get("http://192.168.0.17:8082/api/watch-later/all-watch-later");
+  return axios.get(
+    "https://quever-api.appspot.com/api/watch-later/all-watch-later"
+  );
 };
 
 const getFavouriteMovies = () => {
-  return axios.get("http://192.168.0.17:8082/api/favorites-movies");
+  return axios.get("https://quever-api.appspot.com/api/favorites-movies");
 };
 
 const deleteWatchLaterMovie = id => {
   console.log(id, "que trae esto");
   return axios
     .delete(
-      "http://localhost:8082/api/watch-later/delete-watch-later-movie/" + id
+      "https://quever-api.appspot.com/api/watch-later/delete-watch-later-movie/" +
+        id
     )
     .then(res => {
       window.location = "/watch-later-movie-list";
@@ -67,7 +70,7 @@ const deleteWatchLaterMovie = id => {
 const deleteAllWatchLaterMovie = () => {
   return axios
     .delete(
-      "http://localhost:8082/api/watch-later/delete-all-watch-later-movie"
+      "https://quever-api.appspot.com/api/watch-later/delete-all-watch-later-movie"
     )
     .then(res => {
       window.location = "/search-movie";
@@ -83,11 +86,11 @@ const rateMovieQueVer = (email, imdbID, rateValue) => {
     imdbID,
     rateValue
   };
-  return axios.post(`http://localhost:8082/api/rate/movies`, payload);
+  return axios.post(`https://quever-api.appspot.com/api/rate/movies`, payload);
 };
 
 const calculateRate = (imdbID, rateValue) => {
-  return axios.get(`http://localhost:8082/api/rate/movies/${imdbID}`);
+  return axios.get(`https://quever-api.appspot.com/api/rate/movies/${imdbID}`);
 };
 
 export default {
