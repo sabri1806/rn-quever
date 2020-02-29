@@ -12,6 +12,7 @@ const LoadingScreen = ({ navigation }) => {
     firebase.auth().onAuthStateChanged(user => {
       //TODO: change order inside if to avoid been redirect to a
       //wrong page
+      console.log(navigation.getParam("user"));
       if (navigation.getParam("user")) {
         navigation.navigate("Login");
       } else {

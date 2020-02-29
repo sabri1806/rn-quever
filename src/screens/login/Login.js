@@ -1,8 +1,8 @@
 import React from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, Button, StyleSheet, Image } from "react-native";
 import { NavigationActions } from "react-navigation";
 import * as Google from "expo-google-app-auth";
-import { Image } from "react-native-elements";
+// import { Image } from "react-native-elements";
 
 const Login = ({ navigation }) => {
   const signInWithGoogleAsync = async () => {
@@ -35,7 +35,10 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={"../../assets/image.jpeg"} />
+      <Image
+        source={require("../../../assets/logo.png")}
+        style={{ height: 150, width: 250, margin: 100 }}
+      />
       <Button onPress={signInWithGoogleAsync} title={"Sign In Whit Google"} />
     </View>
   );

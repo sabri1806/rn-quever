@@ -12,6 +12,7 @@ import { Image } from "react-native-elements";
 import Login from "./src/screens/login/Login";
 import ErrorScreen from "./src/screens/error/ErrorScreen";
 import LoadingScreen from "./src/screens/loading/LoadingScreen";
+import { Text } from "react-native";
 
 const MainTabs = createBottomTabNavigator(
   {
@@ -81,26 +82,26 @@ const MainTabs = createBottomTabNavigator(
   }
 );
 
-const navigator = createStackNavigator({
-  Loading: {
-    screen: LoadingScreen
-  },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      header: null
+const navigator = createStackNavigator(
+  {
+    Loading: {
+      screen: LoadingScreen
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: {}
+    },
+    Error: {
+      screen: ErrorScreen
+    },
+    App: {
+      screen: MainTabs
     }
   },
-  Error: {
-    screen: ErrorScreen
-  },
-  App: {
-    screen: MainTabs,
-    navigationOptions: {
-      header: null
-    }
+  {
+    headerMode: "none"
   }
-});
+);
 
 /*const App = createSwitchNavigator({
   Loading: {

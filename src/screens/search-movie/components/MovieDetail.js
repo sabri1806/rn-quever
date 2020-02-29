@@ -5,10 +5,10 @@ import { View, Button } from "react-native";
 const MovieDetail = ({ movie, onBack }) => {
   return (
     <View>
-      <Image
+      {/* <Image
         source={{ uri: movie.Poster }}
         style={{ width: 200, height: 200 }}
-      />
+      /> */}
       <Button title="Volver" onPress={onBack} />
     </View>
   );
