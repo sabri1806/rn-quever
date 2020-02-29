@@ -10,9 +10,16 @@ import {
 import { ListItem } from "react-native-elements";
 import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
+import AppBar from "../../components/app-bar/AppBar";
 
-const FavouriteScreen = () => {
+const FavouriteScreen = ({ navigation }) => {
   const [favouriteMovies, setFavouriteMovies] = useState([]);
+
+  useEffect(() => {
+    if (!navigation.getParam("user")) {
+      navigation.navigate("Login");
+    }
+  }, []);
 
   useEffect(() => {
     MovieService.getFavouriteMovies().then(({ data }) => {
@@ -23,6 +30,7 @@ const FavouriteScreen = () => {
 
   return (
     <ScrollView>
+      <AppBar />
       {favouriteMovies.length > 0 ? (
         favouriteMovies.map((movie, i) => (
           <ListItem

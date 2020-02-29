@@ -11,9 +11,17 @@ import {
 import { ListItem } from "react-native-elements";
 import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
+import AppBar from "../../components/app-bar/AppBar";
 
-const WatchLaterScreen = () => {
+const WatchLaterScreen = ({ navigation }) => {
   const [watchLaterMovies, setWatchLaterMovies] = useState([]);
+
+  useEffect(() => {
+    if (!navigation.getParam("user")) {
+      navigation.navigate("Login");
+    }
+  }, []);
+
   useEffect(() => {
     MovieService.getWatchLaterMovies()
       .then(({ data }) => {
@@ -26,6 +34,7 @@ const WatchLaterScreen = () => {
 
   return (
     <ScrollView>
+      <AppBar />
       {watchLaterMovies.length > 0 ? (
         watchLaterMovies.map((movie, i) => (
           <ListItem

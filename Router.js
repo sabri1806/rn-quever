@@ -9,6 +9,9 @@ import SearchMovieScreen from "./src/screens/search-movie/SearchMovieScreen";
 import WatchLaterScreen from "./src/screens/watch-later/WatchLaterScreen";
 import FavouriteScreen from "./src/screens/favourites/FavouriteScreen";
 import { Image } from "react-native-elements";
+import Login from "./src/screens/login/Login";
+import ErrorScreen from "./src/screens/error/ErrorScreen";
+import LoadingScreen from "./src/screens/loading/LoadingScreen";
 
 const MainTabs = createBottomTabNavigator(
   {
@@ -21,7 +24,7 @@ const MainTabs = createBottomTabNavigator(
     WatchLater: {
       screen: WatchLaterScreen,
       navigationOptions: {
-        tabBarLabel: "Watch Later"
+        headerMode: "none"
       }
     },
     Favourites: {
@@ -78,19 +81,26 @@ const MainTabs = createBottomTabNavigator(
   }
 );
 
-/*const navigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Components: ComponentsScreen,
-    List: ListScreen
+const navigator = createStackNavigator({
+  Loading: {
+    screen: LoadingScreen
   },
-  {
-    initialRouteName: "Home",
-    defaultNavigationOptions: {
-      title: "App"
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Error: {
+    screen: ErrorScreen
+  },
+  App: {
+    screen: MainTabs,
+    navigationOptions: {
+      header: null
     }
   }
-);*/
+});
 
 /*const App = createSwitchNavigator({
   Loading: {
@@ -104,4 +114,4 @@ const MainTabs = createBottomTabNavigator(
   }
 });*/
 
-export default createAppContainer(MainTabs);
+export default createAppContainer(navigator);

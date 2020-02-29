@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import MovieActions from "../../redux/actions/movie.actions";
 import { TextInput } from "react-native-gesture-handler";
 import { View, Text, StyleSheet, Button } from "react-native";
 import MovieList from "./components/MovieList";
 import MovieDetail from "./components/MovieDetail";
+import AppBar from "../../components/app-bar/AppBar";
+import { Input } from "react-native-elements";
 
-const SearchMovieScreen = ({ movies, searchMovies }) => {
-  const [searchText, setSearchText] = useState("duro de matar");
+const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
+  const [searchText, setSearchText] = useState("rocky");
   const [currentMovie, setCurrentMovie] = useState(null);
+
+  useEffect(() => {
+    if (!navigation.getParam("user")) {
+      navigation.navigate("Login");
+    }
+  }, []);
 
   const search = () => {
     console.log("Buscando pelis: ", searchMovies);
@@ -25,12 +33,12 @@ const SearchMovieScreen = ({ movies, searchMovies }) => {
 
   return (
     <View style={styles.textStyle}>
-      <Text>Soy Search Movie</Text>
-      <TextInput
-        style={styles.textInputStyle}
-        onChangeText={text => updateSearchText(text)}
+      <AppBar />
+      <Input
+        placeholder="BASIC INPUT"
         value={searchText}
-      ></TextInput>
+        onChangeText={text => updateSearchText(text)}
+      />
       <Button title="SEARCH MOVIE" onPress={search}></Button>
       {currentMovie ? (
         <MovieDetail
@@ -47,11 +55,6 @@ const SearchMovieScreen = ({ movies, searchMovies }) => {
 const styles = StyleSheet.create({
   textStyle: {
     textAlign: "center"
-  },
-  textInputStyle: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1
   }
 });
 
