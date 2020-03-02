@@ -1,31 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Button,
-  ScrollView
-} from "react-native";
+import { ScrollView } from "react-native";
 import { ListItem } from "react-native-elements";
 import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
 
-const WatchLaterScreen = ({ navigation }) => {
-  const [watchLaterMovies, setWatchLaterMovies] = useState([]);
-
-  useEffect(() => {
-    MovieService.getWatchLaterMovies()
-      .then(({ data }) => {
-        setWatchLaterMovies(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-
+const WatchLaterScreen = ({ watchLaterMovies }) => {
+  // TODO: tomar esto de la db por el amor de Dios
+  const mov = {
+    tt0462499: "Rambo",
+    tt1520211: "The Walking Dead - Defetead",
+    tt2022190: "The Walking Dead - United"
+  };
   return (
     <ScrollView>
       <AppBar />
@@ -33,6 +20,7 @@ const WatchLaterScreen = ({ navigation }) => {
         watchLaterMovies.map((movie, i) => (
           <ListItem
             key={i}
+            title={mov[movie.omDBId]}
             leftAvatar={{ rounded: false, source: { uri: movie.poster } }}
             bottomDivider
             chevron={{ color: "#f00" }}
@@ -45,4 +33,10 @@ const WatchLaterScreen = ({ navigation }) => {
   );
 };
 
-export default WatchLaterScreen;
+const mapStateToProps = ({ movieReducer }) => {
+  return {
+    watchLaterMovies: movieReducer.watchLaterMovies
+  };
+};
+
+export default connect(mapStateToProps, null)(WatchLaterScreen);

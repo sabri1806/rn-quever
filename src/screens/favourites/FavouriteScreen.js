@@ -23,7 +23,6 @@ const FavouriteScreen = ({ navigation }) => {
 
   useEffect(() => {
     MovieService.getFavouriteMovies().then(({ data }) => {
-      console.log(data);
       setFavouriteMovies(data);
     });
   }, []);

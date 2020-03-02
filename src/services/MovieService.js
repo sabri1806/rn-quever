@@ -35,7 +35,7 @@ const saveWatchLaterMovie = (email, omDBId, poster) => {
     omDBId,
     poster
   };
-  console.log(payload);
+
   return axios.post(
     `https://quever-api.appspot.com/api/watch-later/add-watch-later-movie`,
     payload
@@ -53,7 +53,6 @@ const getFavouriteMovies = () => {
 };
 
 const deleteWatchLaterMovie = id => {
-  console.log(id, "que trae esto");
   return axios
     .delete(
       "https://quever-api.appspot.com/api/watch-later/delete-watch-later-movie/" +
@@ -95,7 +94,6 @@ const calculateRate = (imdbID, rateValue) => {
 
 export default {
   getFavouriteMovies,
-  getWatchLaterMovies,
   getMovie,
   searchMovie,
   getMovieDetail,

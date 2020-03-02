@@ -4,7 +4,8 @@ import MovieActions from "../actions/movie.actions";
 const initialState = {
   movie: null,
   movieList: null,
-  movieDetail: null
+  movieDetail: null,
+  watchLaterMovies: []
 };
 
 export default handleActions(
@@ -15,6 +16,8 @@ export default handleActions(
       handleSearchMovie(state, payload),
     [MovieActions.getMovieDetailSuccess]: (state, { payload }) =>
       handleGetDetailMovie(state, payload),
+    [MovieActions.getWatchLaterMoviesSuccess]: (state, { payload }) =>
+      handleGetWatchLaterMovies(state, payload),
     [MovieActions.removeLastMovieSuccess]: state => handleRemoveLastMovie(state)
   },
   initialState
@@ -35,4 +38,8 @@ const handleGetDetailMovie = (state, payload) => {
 
 const handleRemoveLastMovie = state => {
   return { ...state, movieDetail: null };
+};
+
+const handleGetWatchLaterMovies = (state, payload) => {
+  return { ...state, watchLaterMovies: payload };
 };

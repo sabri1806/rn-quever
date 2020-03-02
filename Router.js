@@ -1,10 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import HomeScreen from "./src/screens/HomeScreen";
-import Example from "./src/screens/Example";
 import SearchMovieScreen from "./src/screens/search-movie/SearchMovieScreen";
 import WatchLaterScreen from "./src/screens/watch-later/WatchLaterScreen";
 import FavouriteScreen from "./src/screens/favourites/FavouriteScreen";
@@ -12,7 +9,6 @@ import { Image } from "react-native-elements";
 import Login from "./src/screens/login/Login";
 import ErrorScreen from "./src/screens/error/ErrorScreen";
 import LoadingScreen from "./src/screens/loading/LoadingScreen";
-import { Text } from "react-native";
 
 const MainTabs = createBottomTabNavigator(
   {
@@ -102,17 +98,5 @@ const navigator = createStackNavigator(
     headerMode: "none"
   }
 );
-
-/*const App = createSwitchNavigator({
-  Loading: {
-    screen: Example
-  }
-  Auth: {
-    screen: AuthStack
-  }
-  App: {
-    screen: MainTabs
-  }
-});*/
 
 export default createAppContainer(navigator);

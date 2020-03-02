@@ -12,7 +12,6 @@ const HomeScreen = ({ searchMovies }) => {
   };
 
   const handleSearch = () => {
-    console.log("Buscando puto: ", searchMovies);
     searchMovies(searchText);
   };
 
