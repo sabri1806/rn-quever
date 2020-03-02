@@ -5,6 +5,7 @@ const initialState = {
   movie: null,
   movieList: null,
   movieDetail: null,
+  favouritesMovies: [],
   watchLaterMovies: []
 };
 
@@ -18,6 +19,8 @@ export default handleActions(
       handleGetDetailMovie(state, payload),
     [MovieActions.getWatchLaterMoviesSuccess]: (state, { payload }) =>
       handleGetWatchLaterMovies(state, payload),
+    [MovieActions.getFavouritesMoviesSuccess]: (state, { payload }) =>
+      handleGetFavouritesMovies(state, payload),
     [MovieActions.removeLastMovieSuccess]: state => handleRemoveLastMovie(state)
   },
   initialState
@@ -42,4 +45,8 @@ const handleRemoveLastMovie = state => {
 
 const handleGetWatchLaterMovies = (state, payload) => {
   return { ...state, watchLaterMovies: payload };
+};
+
+const handleGetFavouritesMovies = (state, payload) => {
+  return { ...state, favouritesMovies: payload };
 };

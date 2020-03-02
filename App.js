@@ -5,7 +5,9 @@ import * as firebase from "firebase";
 import { firebaseConfig } from "./firebaseconfig";
 import RouterContainer from "./RouterContainer";
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 class App extends React.Component {
   render() {

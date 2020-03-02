@@ -4,15 +4,17 @@ import MovieActions from "./src/redux/actions/movie.actions";
 import { connect } from "react-redux";
 import { View } from "react-native";
 
-const RouterContainer = ({ getWatchLaterMovies }) => {
-  const onNavigationChange = (prevState, currentState) => {
+const RouterContainer = ({ getFavouritesMovies, getWatchLaterMovies }) => {
+  const onNavigationChange = () => {
     getWatchLaterMovies();
+    getFavouritesMovies();
   };
 
   return <Router onNavigationStateChange={onNavigationChange} />;
 };
 
 const mapDispatchToProps = {
+  getFavouritesMovies: MovieActions.getFavouritesMovies,
   getWatchLaterMovies: MovieActions.getWatchLaterMovies
 };
 

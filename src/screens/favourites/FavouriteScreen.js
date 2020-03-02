@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import {
   View,
   Text,
@@ -8,30 +9,21 @@ import {
   ScrollView
 } from "react-native";
 import { ListItem } from "react-native-elements";
-import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
 
-const FavouriteScreen = ({ navigation }) => {
-  const [favouriteMovies, setFavouriteMovies] = useState([]);
-
+const FavouriteScreen = ({ navigation, favouritesMovies }) => {
   useEffect(() => {
     if (!navigation.getParam("user")) {
       navigation.navigate("Login");
     }
   }, []);
 
-  useEffect(() => {
-    MovieService.getFavouriteMovies().then(({ data }) => {
-      setFavouriteMovies(data);
-    });
-  }, []);
-
   return (
     <ScrollView>
       <AppBar />
-      {favouriteMovies.length > 0 ? (
-        favouriteMovies.map((movie, i) => (
+      {favouritesMovies.length > 0 ? (
+        favouritesMovies.map((movie, i) => (
           <ListItem
             key={i}
             title={movie.moviename}
@@ -48,4 +40,10 @@ const FavouriteScreen = ({ navigation }) => {
   );
 };
 
-export default FavouriteScreen;
+const mapStateToProps = ({ movieReducer }) => {
+  return {
+    favouritesMovies: movieReducer.favouritesMovies
+  };
+};
+
+export default connect(mapStateToProps, null)(FavouriteScreen);

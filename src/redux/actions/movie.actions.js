@@ -5,6 +5,7 @@ const {
   getMovieSuccess,
   searchMoviesSuccess,
   getMovieDetailSuccess,
+  getFavouritesMoviesSuccess,
   getWatchLaterMoviesSuccess,
   removeLastMovieSuccess
 } = createActions({
@@ -12,6 +13,7 @@ const {
   SEARCH_MOVIES_SUCCESS: data => data,
   GET_MOVIE_DETAIL_SUCCESS: data => data,
   GET_WATCH_LATER_MOVIES_SUCCESS: data => data,
+  GET_FAVOURITES_MOVIES_SUCCESS: data => data,
   REMOVE_LAST_MOVIE_SUCCESS: data => data
 });
 
@@ -28,6 +30,15 @@ const getWatchLaterMovies = () => async dispatch => {
   try {
     const response = await MovieService.getWatchLaterMovies();
     dispatch(getWatchLaterMoviesSuccess(response.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getFavouritesMovies = () => async dispatch => {
+  try {
+    const response = await MovieService.getFavouriteMovies();
+    dispatch(getFavouritesMoviesSuccess(response.data));
   } catch (err) {
     console.log(err);
   }
@@ -64,6 +75,8 @@ export default {
   getMovieSuccess,
   getWatchLaterMovies,
   getWatchLaterMoviesSuccess,
+  getFavouritesMovies,
+  getFavouritesMoviesSuccess,
   searchMovies,
   searchMoviesSuccess,
   getMovieDetail,
