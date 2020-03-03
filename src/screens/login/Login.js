@@ -7,7 +7,7 @@ import * as Google from "expo-google-app-auth";
 const Login = ({ navigation }) => {
   //TODO: remove after development
   useEffect(() => {
-    navigation.navigate("App");
+    // navigation.setParams({ user: null });
   }, []);
 
   const signInWithGoogleAsync = async () => {
@@ -18,8 +18,9 @@ const Login = ({ navigation }) => {
           "1011082311509-fj35vbeqjngpi9pukfskiaoah7bdi5jc.apps.googleusercontent.com",
         scopes: ["profile", "email"]
       });
+      console.log(result.type); // eslint-disable-line
       if (result.type === "success") {
-        navigation.navigate("App", { user: result.user });
+        navigation.navigate("Home", { user: result.user });
         return result.accessToken;
       } else {
         return { cancelled: true };
@@ -28,14 +29,6 @@ const Login = ({ navigation }) => {
       console.log(e);
       return { error: true };
     }
-  };
-
-  const handleGoToApp = () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: "App"
-    });
-
-    navigation.dispatch(navigateAction);
   };
 
   return (

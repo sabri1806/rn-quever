@@ -6,16 +6,6 @@ const THE_MOVIE_DB_API_KEY = "2b5628de9b99a860ded3569d24480f1d";
 //get all favorite-movies
 const getMovie = id => {
   return axios.get("https://quever-api.appspot.com/api/favorites-movies/" + id);
-
-  //   .then(res => {
-  //      console.log("Print-showMovieDetails-API-response: " + res.data);
-  //     this.setState({
-  //       movie: res.data
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.log("Error from ShowMovietails");
-  //   })
 };
 
 const searchMovie = textSearch => {

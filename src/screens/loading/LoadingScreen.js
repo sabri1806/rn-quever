@@ -5,23 +5,18 @@ import firebase from "firebase";
 import { DrawerActions } from "react-navigation-drawer";
 
 const LoadingScreen = ({ navigation }) => {
-  // const checkIfLoggedIn = () => {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     //TODO: change order inside if to avoid been redirect to a
-  //     //wrong page
-
-  //     if (navigation.getParam("user")) {
-  //       navigation.navigate("Login");
-  //     } else {
-  //       navigation.navigate("App", { user });
-  //     }
-  //   });
-  // };
+  useEffect(() => {
+    console.log("user->", navigation.getParam("user")); // eslint-disable-line
+    if (navigation.getParam("user")) {
+      navigation.navigate("App", { user });
+    } else {
+      navigation.navigate("Login");
+    }
+  });
 
   return (
     <View style={styles.container}>
-      {/* <ActivityIndicator size="large" /> */}
-      <Text>Loading</Text>
+      <ActivityIndicator size="large" />
     </View>
   );
 };

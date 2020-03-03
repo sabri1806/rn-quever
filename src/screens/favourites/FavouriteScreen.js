@@ -23,7 +23,7 @@ const FavouriteScreen = ({
       getFavouritesMovies();
     }
   }, []);
-  console.log(favouritesMovies); // eslint-disable-line
+
   if (!favouritesMovies) return null;
 
   return (
