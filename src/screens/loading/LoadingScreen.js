@@ -24,7 +24,7 @@ const LoadingScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* <ActivityIndicator size="large" /> */}
-      Loading
+      <Text>Loading</Text>
     </View>
   );
 };

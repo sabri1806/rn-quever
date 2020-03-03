@@ -23,15 +23,6 @@ export default function App() {
   return (
     <Provider store={store} isOpen={false} openMenuOffset={3}>
       <Router />
-      {/* <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Stack">
-          <Drawer.Screen name="Stack" component={RouterContainer} />
-          <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="watchLater" component={WatchLaterScreen} />
-          <Drawer.Screen name="favourites" component={FavouriteScreen} />
-          <Drawer.Screen name="searchMovie" component={SearchMovieScreen} />
-        </Drawer.Navigator>
-      </NavigationContainer> */}
     </Provider>
   );
 }
