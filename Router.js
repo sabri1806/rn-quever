@@ -14,20 +14,67 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
-const MainTabs = createBottomTabNavigator({
-  Feed: {
-    screen: WatchLaterScreen,
-    navigationOptions: {
-      tabBarLabel: "Watch Later"
+const MainTabs = createBottomTabNavigator(
+  {
+    Feed: {
+      screen: WatchLaterScreen,
+      navigationOptions: {
+        tabBarLabel: "Watch Later"
+      }
+    },
+    Search: {
+      screen: FavouriteScreen,
+      navigationOptions: {
+        tabBarLabel: "Favourites"
+      }
     }
   },
-  Search: {
-    screen: FavouriteScreen,
-    navigationOptions: {
-      tabBarLabel: "Favourites"
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#0f0"
+      },
+      headerTintColor: "#00f",
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        if (routeName === "SearchMovie") {
+          return (
+            <Image
+              source={require("./assets/search.png")}
+              style={{
+                width: 40,
+                height: 40,
+                marginBottom: -10
+              }}
+            />
+          );
+        } else if (routeName === "WatchLater") {
+          return (
+            <Image
+              source={require("./assets/watchLater.png")}
+              style={{ width: 30, height: 30 }}
+            />
+          );
+        } else {
+          return (
+            <Image
+              source={require("./assets/favourites.png")}
+              style={{ width: 30, height: 30 }}
+            />
+          );
+        }
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: "#fff",
+      labelStyle: {
+        fontSize: 14
+      },
+      activeBackgroundColor: "#00f",
+      inactiveTintColor: "#263238"
     }
   }
-});
+);
 
 const MainDrawer = createDrawerNavigator({
   Home: Home,
