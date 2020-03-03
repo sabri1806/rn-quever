@@ -9,6 +9,7 @@ import { Image } from "react-native-elements";
 import Login from "./src/screens/login/Login";
 import ErrorScreen from "./src/screens/error/ErrorScreen";
 import LoadingScreen from "./src/screens/loading/LoadingScreen";
+import Home from "./src/screens/home/Home";
 
 const MainTabs = createBottomTabNavigator(
   {
@@ -82,6 +83,9 @@ const navigator = createStackNavigator(
   {
     Loading: {
       screen: LoadingScreen
+    },
+    Home: {
+      screen: Home
     },
     Login: {
       screen: Login,

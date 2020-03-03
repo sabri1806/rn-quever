@@ -33,7 +33,7 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
 
   return (
     <View style={styles.textStyle}>
-      <AppBar />
+      <AppBar navigation={navigation} />
       <Input
         placeholder="BASIC INPUT"
         value={searchText}

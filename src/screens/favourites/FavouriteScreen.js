@@ -21,7 +21,7 @@ const FavouriteScreen = ({ navigation, favouritesMovies }) => {
 
   return (
     <ScrollView>
-      <AppBar />
+      <AppBar navigation={navigation} />
       {favouritesMovies.length > 0 ? (
         favouritesMovies.map((movie, i) => (
           <ListItem

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_KEY = "9c38b7d";
+const THE_MOVIE_DB_API_KEY = "2b5628de9b99a860ded3569d24480f1d";
 
 //get all favorite-movies
 const getMovie = id => {
@@ -52,6 +53,12 @@ const getFavouriteMovies = () => {
   return axios.get("https://quever-api.appspot.com/api/favorites-movies");
 };
 
+const getPopularMovies = () => {
+  return axios.get(
+    `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${THE_MOVIE_DB_API_KEY}`
+  );
+};
+
 const deleteWatchLaterMovie = id => {
   return axios
     .delete(
@@ -97,6 +104,7 @@ export default {
   getMovie,
   searchMovie,
   getMovieDetail,
+  getPopularMovies,
   saveWatchLaterMovie,
   getWatchLaterMovies,
   deleteWatchLaterMovie,

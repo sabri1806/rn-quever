@@ -6,7 +6,7 @@ import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
 
-const WatchLaterScreen = ({ watchLaterMovies }) => {
+const WatchLaterScreen = ({ navigation, watchLaterMovies }) => {
   // TODO: tomar esto de la db por el amor de Dios
   const mov = {
     tt0462499: "Rambo",
@@ -15,7 +15,7 @@ const WatchLaterScreen = ({ watchLaterMovies }) => {
   };
   return (
     <ScrollView>
-      <AppBar />
+      <AppBar navigation={navigation} />
       {watchLaterMovies.length > 0 ? (
         watchLaterMovies.map((movie, i) => (
           <ListItem
