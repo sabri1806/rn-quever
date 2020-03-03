@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { Text, StyleSheet, ActivityIndicator, View } from "react-native";
 
 import firebase from "firebase";
+import { DrawerActions } from "react-navigation-drawer";
 
 const LoadingScreen = ({ navigation }) => {
-  // useEffect(() => {
-  //   checkIfLoggedIn();
-  // }, []);
-
   // const checkIfLoggedIn = () => {
   //   firebase.auth().onAuthStateChanged(user => {
   //     //TODO: change order inside if to avoid been redirect to a

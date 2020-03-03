@@ -1,14 +1,14 @@
 import React from "react";
 import { View } from "react-native";
 import { Header } from "react-native-elements";
-import CustomSideMenu from "../side-menu/CustomSideMenu";
+import { DrawerActions } from "react-navigation-drawer";
 
 const AppBar = ({ navigation }) => {
   const goToHome = () => {
     navigation.navigate("Home");
   };
   const openDrawer = () => {
-    navigation.openDrawer();
+    navigation.dispatch(DrawerActions.openDrawer());
   };
   return (
     <View>

@@ -16,13 +16,19 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 const MainTabs = createBottomTabNavigator(
   {
-    Feed: {
-      screen: WatchLaterScreen,
+    SearchMovie: {
+      screen: SearchMovieScreen,
       navigationOptions: {
-        tabBarLabel: "Watch Later"
+        tabBarLabel: "Search Movie"
       }
     },
-    Search: {
+    WatchLater: {
+      screen: WatchLaterScreen,
+      navigationOptions: {
+        headerMode: "none"
+      }
+    },
+    Favourites: {
       screen: FavouriteScreen,
       navigationOptions: {
         tabBarLabel: "Favourites"
@@ -89,7 +95,8 @@ const AppModalStack = createStackNavigator(
     }
   },
   {
-    headerMode: "none"
+    headerMode: "none",
+    initialRouteName: "App"
   }
 );
 
