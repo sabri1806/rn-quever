@@ -81,11 +81,16 @@ const MainDrawer = createDrawerNavigator({
   MainTabs: MainTabs
 });
 
-const AppModalStack = createStackNavigator({
-  App: MainDrawer,
-  Loading: {
-    screen: LoadingScreen
+const AppModalStack = createStackNavigator(
+  {
+    App: MainDrawer,
+    Loading: {
+      screen: LoadingScreen
+    }
+  },
+  {
+    headerMode: "none"
   }
-});
+);
 
 export default createAppContainer(AppModalStack);
