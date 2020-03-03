@@ -4,27 +4,27 @@ import { Text, StyleSheet, ActivityIndicator, View } from "react-native";
 import firebase from "firebase";
 
 const LoadingScreen = ({ navigation }) => {
-  useEffect(() => {
-    checkIfLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   checkIfLoggedIn();
+  // }, []);
 
-  const checkIfLoggedIn = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      //TODO: change order inside if to avoid been redirect to a
-      //wrong page
+  // const checkIfLoggedIn = () => {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     //TODO: change order inside if to avoid been redirect to a
+  //     //wrong page
 
-      console.log(navigation.getParam("user"));
-      if (navigation.getParam("user")) {
-        navigation.navigate("Login");
-      } else {
-        navigation.navigate("App", { user });
-      }
-    });
-  };
+  //     if (navigation.getParam("user")) {
+  //       navigation.navigate("Login");
+  //     } else {
+  //       navigation.navigate("App", { user });
+  //     }
+  //   });
+  // };
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" />
+      {/* <ActivityIndicator size="large" /> */}
+      Loading
     </View>
   );
 };

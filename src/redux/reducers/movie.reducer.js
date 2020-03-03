@@ -5,8 +5,8 @@ const initialState = {
   movie: null,
   movieList: null,
   movieDetail: null,
-  favouritesMovies: [],
-  watchLaterMovies: []
+  favouritesMovies: null,
+  watchLaterMovies: null
 };
 
 export default handleActions(

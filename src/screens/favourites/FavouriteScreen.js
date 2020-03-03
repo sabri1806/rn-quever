@@ -11,13 +11,20 @@ import {
 import { ListItem } from "react-native-elements";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
+import MovieActions from "../../redux/actions/movie.actions";
 
-const FavouriteScreen = ({ navigation, favouritesMovies }) => {
+const FavouriteScreen = ({
+  getFavouritesMovies,
+  navigation,
+  favouritesMovies
+}) => {
   useEffect(() => {
-    if (!navigation.getParam("user")) {
-      navigation.navigate("Login");
+    if (!favouritesMovies) {
+      getFavouritesMovies();
     }
   }, []);
+  console.log(favouritesMovies); // eslint-disable-line
+  if (!favouritesMovies) return null;
 
   return (
     <ScrollView>
@@ -46,4 +53,8 @@ const mapStateToProps = ({ movieReducer }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(FavouriteScreen);
+const mapDispatchToProps = {
+  getFavouritesMovies: MovieActions.getFavouritesMovies
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteScreen);

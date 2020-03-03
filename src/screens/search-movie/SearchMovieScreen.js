@@ -12,14 +12,13 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
   const [searchText, setSearchText] = useState("rocky");
   const [currentMovie, setCurrentMovie] = useState(null);
 
-  useEffect(() => {
-    if (!navigation.getParam("user")) {
-      navigation.navigate("Login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!navigation.getParam("user")) {
+  //     navigation.navigate("Login");
+  //   }
+  // }, []);
 
   const search = () => {
-    console.log("Buscando pelis: ", searchMovies);
     searchMovies(searchText);
   };
 

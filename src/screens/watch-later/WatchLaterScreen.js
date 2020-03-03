@@ -5,14 +5,27 @@ import { ListItem } from "react-native-elements";
 import MovieService from "../../services/MovieService";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
+import movieActions from "../../redux/actions/movie.actions";
 
-const WatchLaterScreen = ({ navigation, watchLaterMovies }) => {
+const WatchLaterScreen = ({
+  navigation,
+  getWatchLaterMovies,
+  watchLaterMovies
+}) => {
+  useEffect(() => {
+    if (!watchLaterMovies) {
+      getWatchLaterMovies();
+    }
+  }, []);
   // TODO: tomar esto de la db por el amor de Dios
   const mov = {
     tt0462499: "Rambo",
     tt1520211: "The Walking Dead - Defetead",
     tt2022190: "The Walking Dead - United"
   };
+
+  if (!watchLaterMovies) return null;
+
   return (
     <ScrollView>
       <AppBar navigation={navigation} />
@@ -39,4 +52,8 @@ const mapStateToProps = ({ movieReducer }) => {
   };
 };
 
-export default connect(mapStateToProps, null)(WatchLaterScreen);
+const mapDispatchToProps = {
+  getWatchLaterMovies: movieActions.getWatchLaterMovies
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WatchLaterScreen);

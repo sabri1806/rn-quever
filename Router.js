@@ -9,98 +9,27 @@ import { Image } from "react-native-elements";
 import Login from "./src/screens/login/Login";
 import ErrorScreen from "./src/screens/error/ErrorScreen";
 import LoadingScreen from "./src/screens/loading/LoadingScreen";
-import Home from "./src/screens/home/Home";
 
-const MainTabs = createBottomTabNavigator(
-  {
-    SearchMovie: {
-      screen: SearchMovieScreen,
-      navigationOptions: {
-        tabBarLabel: "Search Movie"
-      }
-    },
-    WatchLater: {
-      screen: WatchLaterScreen,
-      navigationOptions: {
-        headerMode: "none"
-      }
-    },
-    Favourites: {
-      screen: FavouriteScreen,
-      navigationOptions: {
-        tabBarLabel: "Favourites"
-      }
-    }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      headerStyle: {
-        backgroundColor: "#0f0"
+const RouterContainer = () => {
+  const navigator = createStackNavigator(
+    {
+      Loading: {
+        screen: LoadingScreen
       },
-      headerTintColor: "#00f",
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        if (routeName === "SearchMovie") {
-          return (
-            <Image
-              source={require("./assets/search.png")}
-              style={{
-                width: 40,
-                height: 40,
-                marginBottom: -10
-              }}
-            />
-          );
-        } else if (routeName === "WatchLater") {
-          return (
-            <Image
-              source={require("./assets/watchLater.png")}
-              style={{ width: 30, height: 30 }}
-            />
-          );
-        } else {
-          return (
-            <Image
-              source={require("./assets/favourites.png")}
-              style={{ width: 30, height: 30 }}
-            />
-          );
-        }
-      }
-    }),
-    tabBarOptions: {
-      activeTintColor: "#fff",
-      labelStyle: {
-        fontSize: 14
+      Login: {
+        screen: Login,
+        navigationOptions: {}
       },
-      activeBackgroundColor: "#00f",
-      inactiveTintColor: "#263238"
+      Error: {
+        screen: ErrorScreen
+      }
+    },
+    {
+      headerMode: "none"
     }
-  }
-);
+  );
 
-const navigator = createStackNavigator(
-  {
-    Loading: {
-      screen: LoadingScreen
-    },
-    Home: {
-      screen: Home
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: {}
-    },
-    Error: {
-      screen: ErrorScreen
-    },
-    App: {
-      screen: MainTabs
-    }
-  },
-  {
-    headerMode: "none"
-  }
-);
+  return createAppContainer(navigator);
+};
 
-export default createAppContainer(navigator);
+export default RouterContainer;
