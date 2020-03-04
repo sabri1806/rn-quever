@@ -27,12 +27,16 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
   return (
     <View style={styles.textStyle}>
       <AppBar navigation={navigation} />
-      <Input
-        placeholder="BASIC INPUT"
-        value={searchText}
-        onChangeText={text => updateSearchText(text)}
-      />
-      <Button title="SEARCH MOVIE" onPress={search}></Button>
+      {!currentMovie && (
+        <>
+          <Input
+            placeholder="BASIC INPUT"
+            value={searchText}
+            onChangeText={text => updateSearchText(text)}
+          />
+          <Button title="SEARCH MOVIE" onPress={search}></Button>
+        </>
+      )}
       {currentMovie ? (
         <MovieDetail
           movie={currentMovie}

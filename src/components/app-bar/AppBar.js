@@ -11,6 +11,7 @@ const AppBar = ({ navigation }) => {
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
+
   return (
     <View>
       <Header

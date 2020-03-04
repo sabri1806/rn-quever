@@ -33,7 +33,7 @@ const WatchLaterScreen = ({
         watchLaterMovies.map((movie, i) => (
           <ListItem
             key={i}
-            title={mov[movie.omDBId]}
+            title={movie.title}
             leftAvatar={{ rounded: false, source: { uri: movie.poster } }}
             bottomDivider
             chevron={{ color: "#f00" }}

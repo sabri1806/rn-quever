@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Button,
-  ScrollView
-} from "react-native";
+import { ScrollView } from "react-native";
 import { ListItem } from "react-native-elements";
 import NoResults from "./../search-movie/components/NoResults";
 import AppBar from "../../components/app-bar/AppBar";
@@ -18,11 +11,18 @@ const FavouriteScreen = ({
   navigation,
   favouritesMovies
 }) => {
+  const [currentMovie, setCurrentMovie] = useState(null);
+
   useEffect(() => {
     if (!favouritesMovies) {
       getFavouritesMovies();
     }
   }, []);
+
+  const handleSelectMovie = movie => {
+    setCurrentMovie(movie);
+    console.log(movie); // eslint-disable-line
+  };
 
   if (!favouritesMovies) return null;
 
@@ -37,7 +37,7 @@ const FavouriteScreen = ({
             subtitle={movie.genre}
             bottomDivider
             chevron={{ color: "#f00" }}
-            onPress={() => onSelectMovie(movie)}
+            onPress={handleSelectMovie}
           />
         ))
       ) : (
