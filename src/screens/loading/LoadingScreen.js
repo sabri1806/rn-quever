@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
-import { Text, StyleSheet, ActivityIndicator, View } from "react-native";
-
-import firebase from "firebase";
-import { DrawerActions } from "react-navigation-drawer";
+import { Text, StyleSheet, View } from "react-native";
 
 const LoadingScreen = ({ navigation }) => {
   useEffect(() => {
-    console.log("user->", navigation.getParam("user")); // eslint-disable-line
-    if (navigation.getParam("user")) {
-      navigation.navigate("App", { user });
-    } else {
+    try {
+      if (navigation.getParam("user")) {
+        navigation.navigate("App");
+      } else {
+        console.log("Al login...."); // eslint-disable-line
+        navigation.navigate("Login");
+      }
+    } catch (err) {
+      console.log("Error Al login...."); // eslint-disable-line
       navigation.navigate("Login");
     }
   });
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" />
+      {/* <ActivityIndicator size="large" /> */}
+      <Text>Loading...</Text>
     </View>
   );
 };

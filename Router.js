@@ -107,15 +107,4 @@ const AppModalStack = createStackNavigator(
   }
 );
 
-// const navigator = createStackNavigator(
-//   {
-//     App: {
-//       screen: MainTabs
-//     }
-//   },
-//   {
-//     headerMode: "none"
-//   }
-// );
-
 export default createAppContainer(AppModalStack);

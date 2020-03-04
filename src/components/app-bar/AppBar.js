@@ -5,7 +5,7 @@ import { DrawerActions } from "react-navigation-drawer";
 
 const AppBar = ({ navigation }) => {
   const goToHome = () => {
-    navigation.setParams({ user: null });
+    navigation.navigate("Home");
     navigation.navigate("Login");
   };
   const openDrawer = () => {

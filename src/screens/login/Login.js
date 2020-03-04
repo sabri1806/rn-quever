@@ -18,9 +18,10 @@ const Login = ({ navigation }) => {
           "1011082311509-fj35vbeqjngpi9pukfskiaoah7bdi5jc.apps.googleusercontent.com",
         scopes: ["profile", "email"]
       });
-      console.log(result.type); // eslint-disable-line
+
       if (result.type === "success") {
-        navigation.navigate("Home", { user: result.user });
+        navigation.setParams({ user: result.user });
+        navigation.navigate("Loading", { user: result.user });
         return result.accessToken;
       } else {
         return { cancelled: true };
