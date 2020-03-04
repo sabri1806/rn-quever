@@ -103,7 +103,7 @@ const AppModalStack = createStackNavigator(
   },
   {
     headerMode: "none",
-    initialRouteName: "App"
+    initialRouteName: "Login"
   }
 );
 
