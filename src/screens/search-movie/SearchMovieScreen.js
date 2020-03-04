@@ -9,7 +9,7 @@ import AppBar from "../../components/app-bar/AppBar";
 import { Input } from "react-native-elements";
 
 const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
-  const [searchText, setSearchText] = useState("rocky");
+  const [searchText, setSearchText] = useState("");
   const [currentMovie, setCurrentMovie] = useState(null);
 
   const search = () => {
@@ -28,14 +28,25 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
     <View style={styles.textStyle}>
       <AppBar navigation={navigation} />
       {!currentMovie && (
-        <>
-          <Input
-            placeholder="BASIC INPUT"
-            value={searchText}
-            onChangeText={text => updateSearchText(text)}
-          />
-          <Button title="SEARCH MOVIE" onPress={search}></Button>
-        </>
+        <View style={{ marginTop: 30 }}>
+          <View style={{ border: "1px solid " }}>
+            <Input
+              placeholder="Movie name"
+              value={searchText}
+              onChangeText={text => updateSearchText(text)}
+            />
+          </View>
+          <View style={{ marginTop: 30 }}>
+            <View style={{ marginLeft: 80, width: 200 }}>
+              <Button
+                color="#e67e22"
+                style={{ width: 200 }}
+                title="SEARCH MOVIE"
+                onPress={search}
+              ></Button>
+            </View>
+          </View>
+        </View>
       )}
       {currentMovie ? (
         <MovieDetail

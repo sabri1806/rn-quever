@@ -74,7 +74,7 @@ const MainTabs = createBottomTabNavigator(
       labelStyle: {
         fontSize: 14
       },
-      activeBackgroundColor: "#00f",
+      activeBackgroundColor: "#e67e22",
       inactiveTintColor: "#263238"
     }
   }
@@ -82,7 +82,7 @@ const MainTabs = createBottomTabNavigator(
 
 const MainDrawer = createDrawerNavigator({
   Home: Home,
-  MainTabs: MainTabs
+  Menu: MainTabs
 });
 
 const AppModalStack = createStackNavigator(

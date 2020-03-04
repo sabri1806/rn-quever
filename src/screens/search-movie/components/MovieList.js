@@ -16,7 +16,7 @@ const MovieList = ({ onSelectMovie, movies }) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{ marginTop: 20 }}>
       {movies.length > 0 ? (
         movies.map((movie, i) => (
           <ListItem

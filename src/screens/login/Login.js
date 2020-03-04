@@ -38,7 +38,11 @@ const Login = ({ navigation }) => {
         source={require("../../../assets/logo.png")}
         style={{ height: 150, width: 250, margin: 100 }}
       />
-      <Button onPress={signInWithGoogleAsync} title={"Sign In Whit Google"} />
+      <Button
+        color="#e67e22"
+        onPress={signInWithGoogleAsync}
+        title={"Sign In With Google"}
+      />
     </View>
   );
 };
