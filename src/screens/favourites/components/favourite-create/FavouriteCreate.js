@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, Input } from "react-native-elements";
-import { View, Button } from "react-native";
+import { View, Button, Alert } from "react-native";
 import styles from "./FavouriteCreate.styles";
 import MovieService from "../../../../services/MovieService";
 import { AsyncStorage } from "react-native";
@@ -47,7 +47,9 @@ const FavouriteCreate = ({ navigation }) => {
 
   const handleSaveFavourite = () => {
     MovieService.saveFavourite(newFavourite).then(() => {
-      navigation.navigate("Favourites");
+      Alert.alert("Success", "Favourite movie was created!", [
+        { text: "OK", onPress: () => backToFavouriteList() }
+      ]);
     });
   };
 

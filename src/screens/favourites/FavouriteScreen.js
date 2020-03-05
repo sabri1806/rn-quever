@@ -25,6 +25,7 @@ const FavouriteScreen = ({
   };
 
   const handleBack = () => {
+    getFavouritesMovies();
     setCurrentMovie(null);
   };
   if (!favouritesMovies) return null;

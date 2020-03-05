@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button } from "react-native";
+import { View, Button, Alert } from "react-native";
 import styles from "./FavouriteDetail.styles";
 import Moment from "moment";
 import { Text } from "react-native-elements";
@@ -9,13 +9,11 @@ const FavouriteDetail = ({ movie, onBack }) => {
   if (!movie) return null;
 
   const deleteFavouriteMovie = () => {
-    MovieService.deleteFavouriteMovie(movie._id)
-      .then(() => {
-        onBack();
-      })
-      .finally(() => {
-        onBack();
-      });
+    MovieService.deleteFavouriteMovie(movie._id).then(() => {
+      Alert.alert("Success", "Favourite movie was deleted!", [
+        { text: "OK", onPress: () => onBack() }
+      ]);
+    });
   };
 
   return (

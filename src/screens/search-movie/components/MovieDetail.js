@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native-elements";
-import { View, Button, Text } from "react-native";
+import { View, Button, Text, Alert } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import MovieService from "../../../services/MovieService";
 import styles from "./MovieDetail.styles";
 import { AsyncStorage } from "react-native";
 import DetailBar from "../../../components/app-bar/DetailBar";
 
-const MovieDetail = ({ movie, onBack, source, navigation }) => {
+const MovieDetail = ({ movie, onBack, source }) => {
   const [movieDetail, setMovieDetail] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [average, setAverage] = useState();
 
   useEffect(() => {
     MovieService.getMovieDetail(movie.imdbID || movie.omDBId).then(response => {
@@ -27,15 +28,48 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
     };
 
     getUserFromStorage();
+
+    if (source !== "search") {
+      MovieService.calculateRate(movie.imdbID).then(response => {
+        setAverage(response.data.average || 0);
+      });
+    }
   }, []);
 
   const deleteWatchLater = () => {
-    MovieService.deleteWatchLaterMovie(movie._id)
-      .then(() => {
-        onBack();
+    MovieService.deleteWatchLaterMovie(movie._id).then(() => {
+      Alert.alert("Success", "Movie was removed from watch later!", [
+        { text: "OK", onPress: () => onBack() }
+      ]);
+    });
+  };
+
+  const handleCalculateRate = rateValue => {
+    MovieService.calculateRate(movie.imdbID, rateValue)
+      .then(response => {
+        setAverage(response.data.average);
+        7;
       })
-      .finally(() => {
-        onBack();
+      .catch(err => {
+        console.log(err); // eslint-disable-line
+      });
+  };
+
+  const rateMovie = rateValue => {
+    MovieService.rateMovieQueVer(
+      currentUser,
+      movie.Title,
+      movie.imdbID,
+      rateValue
+    )
+      .then(response => {
+        handleCalculateRate(rateValue);
+      })
+      .catch(err => {
+        Alert.alert(
+          "Invalid action",
+          "You has already voted for this movie, thanks!!"
+        );
       });
   };
 
@@ -54,7 +88,7 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
 
   return (
     <View>
-      <DetailBar />
+      {source !== "search" && <DetailBar />}
       <ScrollView>
         <View style={styles.imageContainer}>
           <Image
@@ -66,13 +100,94 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
           style={{
             paddingTop: 5,
             paddingRight: 20,
-            paddingBottom: 5,
             paddingLeft: 20,
             height: 200
           }}
         >
           <Text>{movieDetail.Plot}</Text>
         </ScrollView>
+        {source !== "search" && (
+          <>
+            <View style={{ marginLeft: 20, marginBottom: 20, marginTop: -60 }}>
+              <Text>Movie Rate: {average}</Text>
+            </View>
+            <View style={{ marginLeft: 20, marginBottom: 20, marginTop: -10 }}>
+              <Text>Rate It:</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View
+                style={{ width: 20, flex: 1, marginLeft: 10, marginRight: 10 }}
+              >
+                <Button
+                  title="1"
+                  onPress={() => rateMovie(1)}
+                  style={{
+                    width: 20,
+                    flex: 1,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                ></Button>
+              </View>
+              <View
+                style={{ width: 20, flex: 1, marginLeft: 10, marginRight: 10 }}
+              >
+                <Button
+                  title="2"
+                  onPress={() => rateMovie(2)}
+                  style={{
+                    width: 20,
+                    flex: 1,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                ></Button>
+              </View>
+              <View
+                style={{ width: 20, flex: 1, marginLeft: 10, marginRight: 10 }}
+              >
+                <Button
+                  title="3"
+                  onPress={() => rateMovie(3)}
+                  style={{
+                    width: 20,
+                    flex: 1,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                ></Button>
+              </View>
+              <View
+                style={{ width: 20, flex: 1, marginLeft: 10, marginRight: 10 }}
+              >
+                <Button
+                  title="4"
+                  onPress={() => rateMovie(4)}
+                  style={{
+                    width: 20,
+                    flex: 1,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                ></Button>
+              </View>
+              <View
+                style={{ width: 20, flex: 1, marginLeft: 10, marginRight: 10 }}
+              >
+                <Button
+                  title="5"
+                  onPress={() => rateMovie(5)}
+                  style={{
+                    width: 20,
+                    flex: 1,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                ></Button>
+              </View>
+            </View>
+          </>
+        )}
         <View style={{ margin: 10 }}>
           <View
             style={{

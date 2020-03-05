@@ -6,6 +6,7 @@ import NoResults from "./../search-movie/components/NoResults";
 import MovieDetail from "../search-movie/components/MovieDetail";
 import AppBar from "../../components/app-bar/AppBar";
 import movieActions from "../../redux/actions/movie.actions";
+import MovieService from "../../services/MovieService";
 
 const WatchLaterScreen = ({
   navigation,
@@ -22,6 +23,16 @@ const WatchLaterScreen = ({
 
   const handleSelectMovie = movie => {
     setCurrentMovie(movie);
+  };
+
+  const deleteAllWatchLater = () => {
+    MovieService.deleteAllWatchLaterMovie()
+      .then(() => {
+        getWatchLaterMovies();
+      })
+      .catch(err => {
+        console.log(err); // eslint-disable-line
+      });
   };
 
   if (!watchLaterMovies) return null;
@@ -52,7 +63,7 @@ const WatchLaterScreen = ({
               title={"Refresh"}
             />
           </View>
-          <View>
+          {watchLaterMovies && watchLaterMovies.length > 0 && (
             <View
               style={{
                 marginTop: 5,
@@ -61,9 +72,13 @@ const WatchLaterScreen = ({
                 marginLeft: 50
               }}
             >
-              <Button color="#e67e22" title="Delete All"></Button>
+              <Button
+                onPress={deleteAllWatchLater}
+                color="#e67e22"
+                title="Delete All"
+              ></Button>
             </View>
-          </View>
+          )}
         </>
       )}
       {currentMovie && (
