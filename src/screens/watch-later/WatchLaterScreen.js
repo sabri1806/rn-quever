@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { ScrollView } from "react-native";
-import { ListItem } from "react-native-elements";
-import MovieService from "../../services/MovieService";
+import { ScrollView, View } from "react-native";
+import { ListItem, Button } from "react-native-elements";
 import NoResults from "./../search-movie/components/NoResults";
+import MovieDetail from "../search-movie/components/MovieDetail";
 import AppBar from "../../components/app-bar/AppBar";
 import movieActions from "../../redux/actions/movie.actions";
 
@@ -12,6 +12,8 @@ const WatchLaterScreen = ({
   getWatchLaterMovies,
   watchLaterMovies
 }) => {
+  const [currentMovie, setCurrentMovie] = useState(null);
+
   useEffect(() => {
     if (!watchLaterMovies) {
       getWatchLaterMovies();
@@ -24,23 +26,41 @@ const WatchLaterScreen = ({
     tt2022190: "The Walking Dead - United"
   };
 
-  if (!watchLaterMovies) return null;
+  const handleSelectMovie = movie => {
+    setCurrentMovie(movie);
+  };
 
+  if (!watchLaterMovies) return null;
+  console.log(currentMovie); // eslint-disable-line
   return (
     <ScrollView>
-      <AppBar navigation={navigation} />
-      {watchLaterMovies.length > 0 ? (
-        watchLaterMovies.map((movie, i) => (
-          <ListItem
-            key={i}
-            title={movie.title}
-            leftAvatar={{ rounded: false, source: { uri: movie.poster } }}
-            bottomDivider
-            chevron={{ color: "#f00" }}
-          />
-        ))
-      ) : (
-        <NoResults />
+      {!currentMovie && (
+        <>
+          <AppBar navigation={navigation} />
+          {watchLaterMovies.length > 0 ? (
+            watchLaterMovies.map((movie, i) => (
+              <ListItem
+                key={i}
+                title={movie.title}
+                leftAvatar={{ rounded: false, source: { uri: movie.poster } }}
+                bottomDivider
+                chevron={{ color: "#f00" }}
+                onPress={() => handleSelectMovie(movie)}
+              />
+            ))
+          ) : (
+            <NoResults />
+          )}
+          <View style={{ marginTop: "10%", backgroundColor: "#e67e22" }}>
+            <Button onPress={getWatchLaterMovies} title={"Refresh"} />
+          </View>
+        </>
+      )}
+      {currentMovie && (
+        <MovieDetail
+          movie={currentMovie}
+          onBack={() => setCurrentMovie(null)}
+        />
       )}
     </ScrollView>
   );

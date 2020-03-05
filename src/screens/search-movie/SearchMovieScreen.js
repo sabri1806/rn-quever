@@ -52,6 +52,7 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
         <MovieDetail
           movie={currentMovie}
           onBack={() => setCurrentMovie(null)}
+          source={"search"}
         />
       ) : (
         <MovieList movies={movies} onSelectMovie={handleSelectMovie} />

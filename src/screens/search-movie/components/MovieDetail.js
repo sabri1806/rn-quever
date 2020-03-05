@@ -3,30 +3,13 @@ import { Image } from "react-native-elements";
 import { View, Button, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import MovieService from "../../../services/MovieService";
+import styles from "./MovieDetail.styles";
 
-const MovieDetail = ({ movie, onBack }) => {
+const MovieDetail = ({ movie, onBack, source }) => {
   const [movieDetail, setMovieDetail] = useState(null);
-  const styles = {
-    container: {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-      paddingTop: 30
-    },
-    imageContainer: {
-      marginTop: 20,
-      marginBottom: 50
-    },
-    button: {
-      marginTop: 20,
-      padding: 30,
-      width: 10
-    }
-  };
 
   useEffect(() => {
-    MovieService.getMovieDetail(movie.imdbID).then(response => {
+    MovieService.getMovieDetail(movie.imdbID || movie.omDBId).then(response => {
       setMovieDetail(response.data);
     });
   }, []);
@@ -36,13 +19,14 @@ const MovieDetail = ({ movie, onBack }) => {
   return (
     <View>
       <ScrollView>
-        <Image
-          source={{ uri: movieDetail.Poster }}
-          style={{ width: 200, height: 300 }}
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: movieDetail.Poster }}
+            style={{ width: 200, height: 300 }}
+          />
+        </View>
         <ScrollView
           style={{
-            height: 150,
             paddingTop: 5,
             paddingRight: 20,
             paddingBottom: 5,
@@ -68,21 +52,23 @@ const MovieDetail = ({ movie, onBack }) => {
               onPress={onBack}
             />
           </View>
-          <View
-            style={{
-              marginTop: 5,
-              marginRight: 20,
-              marginBottom: 5,
-              marginLeft: 20
-            }}
-          >
-            <Button
-              color="#e67e22"
-              style={styles.button}
-              title="Watch Later"
-              onPress={onBack}
-            />
-          </View>
+          {source === "search" && (
+            <View
+              style={{
+                marginTop: 5,
+                marginRight: 20,
+                marginBottom: 5,
+                marginLeft: 20
+              }}
+            >
+              <Button
+                color="#e67e22"
+                style={styles.button}
+                title="Watch Later"
+                onPress={onBack}
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>
