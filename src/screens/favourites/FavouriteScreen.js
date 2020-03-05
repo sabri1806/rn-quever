@@ -50,6 +50,12 @@ const FavouriteScreen = ({
           <View style={{ marginTop: "10%", backgroundColor: "#e67e22" }}>
             <Button onPress={getFavouritesMovies} title={"Refresh"} />
           </View>
+          <View style={{ marginTop: "10%", backgroundColor: "#e67e22" }}>
+            <Button
+              onPress={() => navigation.navigate("FavouriteCreate")}
+              title={"Create New Favourite"}
+            />
+          </View>
         </ScrollView>
       )}
       {currentMovie && (

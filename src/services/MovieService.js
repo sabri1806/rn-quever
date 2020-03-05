@@ -40,6 +40,28 @@ const saveWatchLaterMovie = (email, omDBId, poster, title) => {
   );
 };
 
+const saveFavourite = ({
+  moviename,
+  description,
+  genre,
+  year,
+  cast,
+  email
+}) => {
+  const payload = {
+    moviename,
+    description,
+    genre,
+    year,
+    cast,
+    email
+  };
+  return axios.post(
+    "https://quever-api.appspot.com/api/favorites-movies",
+    payload
+  );
+};
+
 const getWatchLaterMovies = () => {
   return axios.get(
     "https://quever-api.appspot.com/api/watch-later/all-watch-later"
@@ -108,5 +130,6 @@ export default {
   deleteWatchLaterMovie,
   deleteAllWatchLaterMovie,
   rateMovieQueVer,
-  calculateRate
+  calculateRate,
+  saveFavourite
 };

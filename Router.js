@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
+import FavouriteCreate from "./src/screens/favourites/components/favourite-create/FavouriteCreate";
 
 const MainTabs = createBottomTabNavigator(
   {
@@ -96,6 +97,9 @@ const AppModalStack = createStackNavigator(
     App: MainDrawer,
     Login: {
       screen: Login
+    },
+    FavouriteCreate: {
+      screen: FavouriteCreate
     },
     Error: {
       screen: ErrorScreen

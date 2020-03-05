@@ -19,12 +19,6 @@ const WatchLaterScreen = ({
       getWatchLaterMovies();
     }
   }, []);
-  // TODO: tomar esto de la db por el amor de Dios
-  const mov = {
-    tt0462499: "Rambo",
-    tt1520211: "The Walking Dead - Defetead",
-    tt2022190: "The Walking Dead - United"
-  };
 
   const handleSelectMovie = movie => {
     setCurrentMovie(movie);
