@@ -34,7 +34,7 @@ const FavouriteDetail = ({ movie, onBack }) => {
           <Button
             color="#e67e22"
             style={styles.button}
-            title="Volver"
+            title="Back"
             onPress={onBack}
           />
         </View>

@@ -38,7 +38,6 @@ const getWatchLaterMovies = () => async dispatch => {
 const getFavouritesMovies = () => async dispatch => {
   try {
     const response = await MovieService.getFavouriteMovies();
-    console.log(response.data); // eslint-disable-line
     dispatch(getFavouritesMoviesSuccess(response.data));
   } catch (err) {
     console.log(err);
