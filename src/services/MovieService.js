@@ -114,6 +114,7 @@ const rateMovieQueVer = (email, title, imdbID, rateValue) => {
     imdbID,
     rateValue
   };
+  console.log(payload); // eslint-disable-line
   return axios.post(`https://quever-api.appspot.com/api/rate/movies`, payload);
 };
 

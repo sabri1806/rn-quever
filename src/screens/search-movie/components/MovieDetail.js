@@ -30,7 +30,7 @@ const MovieDetail = ({ movie, onBack, source }) => {
     getUserFromStorage();
 
     if (source !== "search") {
-      MovieService.calculateRate(movie.imdbID).then(response => {
+      MovieService.calculateRate(movie.omDBId).then(response => {
         setAverage(response.data.average || 0);
       });
     }
@@ -45,7 +45,7 @@ const MovieDetail = ({ movie, onBack, source }) => {
   };
 
   const handleCalculateRate = rateValue => {
-    MovieService.calculateRate(movie.imdbID, rateValue)
+    MovieService.calculateRate(movie.omDBId, rateValue)
       .then(response => {
         setAverage(response.data.average);
         7;
@@ -59,10 +59,11 @@ const MovieDetail = ({ movie, onBack, source }) => {
     MovieService.rateMovieQueVer(
       currentUser,
       movie.Title,
-      movie.imdbID,
+      movie.omDBId,
       rateValue
     )
       .then(response => {
+        Alert.alert("Success", "We received your feedback, thanks!");
         handleCalculateRate(rateValue);
       })
       .catch(err => {
@@ -80,7 +81,9 @@ const MovieDetail = ({ movie, onBack, source }) => {
       movie.Poster,
       movie.Title
     ).then(response => {
-      onBack();
+      Alert.alert("Success", "Movie was added to watch later!", [
+        { text: "OK", onPress: () => onBack() }
+      ]);
     });
   };
 
@@ -91,25 +94,29 @@ const MovieDetail = ({ movie, onBack, source }) => {
       {source !== "search" && <DetailBar />}
       <ScrollView>
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: movieDetail.Poster }}
-            style={{ width: 100, height: 200 }}
-          />
+          <View style={{ flex: 1 }}>
+            <Image
+              source={{ uri: movieDetail.Poster }}
+              style={{ width: 100, height: 200 }}
+            />
+          </View>
+          <ScrollView
+            style={{
+              minWidth: 200,
+              flex: 1,
+              paddingTop: 5,
+              paddingRight: 20,
+              paddingLeft: 20,
+              height: 200
+            }}
+          >
+            <Text>{movieDetail.Plot}</Text>
+          </ScrollView>
         </View>
-        <ScrollView
-          style={{
-            paddingTop: 5,
-            paddingRight: 20,
-            paddingLeft: 20,
-            height: 200
-          }}
-        >
-          <Text>{movieDetail.Plot}</Text>
-        </ScrollView>
         {source !== "search" && (
           <>
-            <View style={{ marginLeft: 20, marginBottom: 20, marginTop: -60 }}>
-              <Text>Movie Rate: {average}</Text>
+            <View style={{ marginLeft: 20, marginBottom: 20, marginTop: 10 }}>
+              <Text>Quever Rating: {average}</Text>
             </View>
             <View style={{ marginLeft: 20, marginBottom: 20, marginTop: -10 }}>
               <Text>Rate It:</Text>
@@ -123,7 +130,6 @@ const MovieDetail = ({ movie, onBack, source }) => {
                   onPress={() => rateMovie(1)}
                   style={{
                     width: 20,
-                    flex: 1,
                     marginLeft: 10,
                     marginRight: 10
                   }}
@@ -137,7 +143,6 @@ const MovieDetail = ({ movie, onBack, source }) => {
                   onPress={() => rateMovie(2)}
                   style={{
                     width: 20,
-                    flex: 1,
                     marginLeft: 10,
                     marginRight: 10
                   }}
@@ -151,7 +156,6 @@ const MovieDetail = ({ movie, onBack, source }) => {
                   onPress={() => rateMovie(3)}
                   style={{
                     width: 20,
-                    flex: 1,
                     marginLeft: 10,
                     marginRight: 10
                   }}
@@ -165,7 +169,6 @@ const MovieDetail = ({ movie, onBack, source }) => {
                   onPress={() => rateMovie(4)}
                   style={{
                     width: 20,
-                    flex: 1,
                     marginLeft: 10,
                     marginRight: 10
                   }}
@@ -179,7 +182,6 @@ const MovieDetail = ({ movie, onBack, source }) => {
                   onPress={() => rateMovie(5)}
                   style={{
                     width: 20,
-                    flex: 1,
                     marginLeft: 10,
                     marginRight: 10
                   }}

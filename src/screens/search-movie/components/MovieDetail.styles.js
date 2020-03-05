@@ -6,9 +6,12 @@ export default {
     alignItems: "center"
   },
   imageContainer: {
+    flexDirection: "row",
+    flex: 1,
+    display: "flex",
     marginTop: 20,
     marginBottom: 20,
-    marginLeft: 140
+    marginLeft: 5
   },
   button: {
     marginTop: 20,
