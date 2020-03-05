@@ -4,12 +4,12 @@ import { Text, StyleSheet, View } from "react-native";
 const LoadingScreen = ({ navigation }) => {
   useEffect(() => {
     try {
-      if (navigation.getParam("user")) {
-        navigation.navigate("App");
-      } else {
-        console.log("Al login...."); // eslint-disable-line
-        navigation.navigate("Login");
-      }
+      navigation.navigate("App");
+      // if (navigation.getParam("user")) {
+      // } else {
+      //   console.log("Al login...."); // eslint-disable-line
+      //   navigation.navigate("Login");
+      // }
     } catch (err) {
       console.log("Error Al login...."); // eslint-disable-line
       navigation.navigate("Login");

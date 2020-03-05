@@ -20,6 +20,12 @@ const getMovieDetail = movieId => {
   );
 };
 
+const getFavouriteMovieDetail = favouriteDetailId => {
+  return axios.get(
+    "https://quever-api.appspot.com/api/favorites-movies/" + favouriteDetailId
+  );
+};
+
 const saveWatchLaterMovie = (email, omDBId, poster) => {
   const payload = {
     email,
@@ -91,6 +97,7 @@ const calculateRate = (imdbID, rateValue) => {
 
 export default {
   getFavouriteMovies,
+  getFavouriteMovieDetail,
   getMovie,
   searchMovie,
   getMovieDetail,

@@ -29,6 +29,7 @@
     "android": {
       "package": "com.davinci.saa185",
       "versionCode": 1
-    }
+    },
+    "description": ""
   }
 }

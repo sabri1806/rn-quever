@@ -87,13 +87,13 @@ const MainDrawer = createDrawerNavigator({
 
 const AppModalStack = createStackNavigator(
   {
+    Loading: {
+      screen: LoadingScreen
+    },
     Home: {
       screen: Home
     },
     App: MainDrawer,
-    Loading: {
-      screen: LoadingScreen
-    },
     Login: {
       screen: Login
     },

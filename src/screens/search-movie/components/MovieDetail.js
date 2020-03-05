@@ -20,7 +20,8 @@ const MovieDetail = ({ movie, onBack }) => {
     },
     button: {
       marginTop: 20,
-      padding: 30
+      padding: 30,
+      width: 10
     }
   };
 
@@ -33,19 +34,58 @@ const MovieDetail = ({ movie, onBack }) => {
   if (!movieDetail) return null;
 
   return (
-    <ScrollView>
-      <Image
-        source={{ uri: movieDetail.Poster }}
-        style={{ width: 200, height: 300 }}
-      />
-      <Text>{movieDetail.Plot}</Text>
-      <Button
-        color="#e67e22"
-        style={styles.button}
-        title="Volver"
-        onPress={onBack}
-      />
-    </ScrollView>
+    <View>
+      <ScrollView>
+        <Image
+          source={{ uri: movieDetail.Poster }}
+          style={{ width: 200, height: 300 }}
+        />
+        <ScrollView
+          style={{
+            height: 150,
+            paddingTop: 5,
+            paddingRight: 20,
+            paddingBottom: 5,
+            paddingLeft: 20,
+            marginTop: 20
+          }}
+        >
+          <Text>{movieDetail.Plot}</Text>
+        </ScrollView>
+        <View style={{ margin: 10 }}>
+          <View
+            style={{
+              marginTop: 5,
+              marginRight: 20,
+              marginBottom: 5,
+              marginLeft: 20
+            }}
+          >
+            <Button
+              color="#e67e22"
+              style={styles.button}
+              title="Volver"
+              onPress={onBack}
+            />
+          </View>
+          <View
+            style={{
+              marginTop: 5,
+              marginRight: 20,
+              marginBottom: 5,
+              marginLeft: 20
+            }}
+          >
+            <Button
+              color="#e67e22"
+              style={styles.button}
+              title="Watch Later"
+              onPress={onBack}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
