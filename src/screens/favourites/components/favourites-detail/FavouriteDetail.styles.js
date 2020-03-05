@@ -11,12 +11,15 @@ export default {
   },
   backBtnContainer: {
     marginTop: 5,
-    marginRight: 10,
+    marginRight: 50,
     marginBottom: 5,
-    marginLeft: 10
+    marginLeft: 50
+  },
+  deleteBtn: {
+    marginTop: 100
   },
   backBtn: {
-    marginTop: 100
+    marginTop: 20
   },
   text: {
     fontSize: 14,

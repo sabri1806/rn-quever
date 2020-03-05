@@ -118,6 +118,12 @@ const calculateRate = (imdbID, rateValue) => {
   return axios.get(`https://quever-api.appspot.com/api/rate/movies/${imdbID}`);
 };
 
+const deleteFavouriteMovie = id => {
+  return axios.delete(
+    "https://quever-api.appspot.com/api/favorites-movies/" + id
+  );
+};
+
 export default {
   getFavouriteMovies,
   getFavouriteMovieDetail,
@@ -127,6 +133,7 @@ export default {
   getPopularMovies,
   saveWatchLaterMovie,
   getWatchLaterMovies,
+  deleteFavouriteMovie,
   deleteWatchLaterMovie,
   deleteAllWatchLaterMovie,
   rateMovieQueVer,

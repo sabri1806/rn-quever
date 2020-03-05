@@ -5,6 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import MovieService from "../../../services/MovieService";
 import styles from "./MovieDetail.styles";
 import { AsyncStorage } from "react-native";
+import DetailBar from "../../../components/app-bar/DetailBar";
 
 const MovieDetail = ({ movie, onBack, source, navigation }) => {
   const [movieDetail, setMovieDetail] = useState(null);
@@ -28,6 +29,16 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
     getUserFromStorage();
   }, []);
 
+  const deleteWatchLater = () => {
+    MovieService.deleteWatchLaterMovie(movie._id)
+      .then(() => {
+        onBack();
+      })
+      .finally(() => {
+        onBack();
+      });
+  };
+
   const handleWatchLater = () => {
     MovieService.saveWatchLaterMovie(
       currentUser,
@@ -43,11 +54,12 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
 
   return (
     <View>
+      <DetailBar />
       <ScrollView>
         <View style={styles.imageContainer}>
           <Image
             source={{ uri: movieDetail.Poster }}
-            style={{ width: 200, height: 300 }}
+            style={{ width: 100, height: 200 }}
           />
         </View>
         <ScrollView
@@ -56,7 +68,7 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
             paddingRight: 20,
             paddingBottom: 5,
             paddingLeft: 20,
-            marginTop: 20
+            height: 200
           }}
         >
           <Text>{movieDetail.Plot}</Text>
@@ -73,7 +85,7 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
             <Button
               color="#e67e22"
               style={styles.button}
-              title="Volver"
+              title="Back"
               onPress={onBack}
             />
           </View>
@@ -81,9 +93,9 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
             <View
               style={{
                 marginTop: 5,
-                marginRight: 20,
+                marginRight: 50,
                 marginBottom: 5,
-                marginLeft: 20
+                marginLeft: 50
               }}
             >
               <Button
@@ -91,6 +103,23 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
                 style={styles.button}
                 title="Watch Later"
                 onPress={handleWatchLater}
+              />
+            </View>
+          )}
+          {source !== "search" && (
+            <View
+              style={{
+                marginTop: 5,
+                marginRight: 50,
+                marginBottom: 5,
+                marginLeft: 50
+              }}
+            >
+              <Button
+                color="#e67e22"
+                style={styles.button}
+                title="Delete"
+                onPress={deleteWatchLater}
               />
             </View>
           )}

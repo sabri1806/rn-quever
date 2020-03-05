@@ -52,6 +52,18 @@ const WatchLaterScreen = ({
               title={"Refresh"}
             />
           </View>
+          <View>
+            <View
+              style={{
+                marginTop: 5,
+                marginRight: 50,
+                marginBottom: 5,
+                marginLeft: 50
+              }}
+            >
+              <Button color="#e67e22" title="Delete All"></Button>
+            </View>
+          </View>
         </>
       )}
       {currentMovie && (

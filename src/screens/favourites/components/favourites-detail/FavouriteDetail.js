@@ -3,9 +3,20 @@ import { View, Button } from "react-native";
 import styles from "./FavouriteDetail.styles";
 import Moment from "moment";
 import { Text } from "react-native-elements";
+import MovieService from "../../../../services/MovieService";
 
 const FavouriteDetail = ({ movie, onBack }) => {
   if (!movie) return null;
+
+  const deleteFavouriteMovie = () => {
+    MovieService.deleteFavouriteMovie(movie._id)
+      .then(() => {
+        onBack();
+      })
+      .finally(() => {
+        onBack();
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -30,13 +41,15 @@ const FavouriteDetail = ({ movie, onBack }) => {
         </Text>
       </View>
       <View style={styles.backBtnContainer}>
-        <View style={styles.backBtn}>
+        <View style={styles.deleteBtn}>
           <Button
             color="#e67e22"
-            style={styles.button}
-            title="Back"
-            onPress={onBack}
+            title="Delete"
+            onPress={deleteFavouriteMovie}
           />
+        </View>
+        <View style={styles.backBtn}>
+          <Button color="#e67e22" title="Back" onPress={onBack} />
         </View>
       </View>
     </View>

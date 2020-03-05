@@ -3,13 +3,12 @@ export default {
     width: "100%",
     height: "100%",
     display: "flex",
-    alignItems: "center",
-    paddingTop: 30
+    alignItems: "center"
   },
   imageContainer: {
     marginTop: 20,
-    marginBottom: 50,
-    marginLeft: 100
+    marginBottom: 20,
+    marginLeft: 140
   },
   button: {
     marginTop: 20,

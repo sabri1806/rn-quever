@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rn-quever-1.0.5",
+    "name": "rn-quever-1.0.6",
     "slug": "rn-quever",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -30,6 +30,6 @@
       "package": "com.davinci.saa185",
       "versionCode": 1
     },
-    "description": "version 1.0.5"
+    "description": "version 1.0.6"
   }
 }
