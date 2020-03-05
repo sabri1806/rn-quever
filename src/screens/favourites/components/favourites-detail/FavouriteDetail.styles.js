@@ -6,6 +6,7 @@ export default {
     paddingTop: 10
   },
   infoContainer: {
+    marginLeft: 110,
     marginBottom: 20
   },
   backBtnContainer: {

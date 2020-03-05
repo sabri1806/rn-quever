@@ -65,9 +65,9 @@ const MovieDetail = ({ movie, onBack, source, navigation }) => {
           <View
             style={{
               marginTop: 5,
-              marginRight: 20,
+              marginRight: 50,
               marginBottom: 5,
-              marginLeft: 20
+              marginLeft: 50
             }}
           >
             <Button

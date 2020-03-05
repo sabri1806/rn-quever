@@ -47,14 +47,14 @@ const FavouriteScreen = ({
           ) : (
             <NoResults />
           )}
-          <View style={{ marginTop: "10%" }}>
+          <View style={{ marginTop: "10%", marginLeft: 50, marginRight: 50 }}>
             <Button
               color="#e67e22"
               onPress={getFavouritesMovies}
               title={"Refresh"}
             />
           </View>
-          <View style={{ marginTop: 10 }}>
+          <View style={{ marginTop: 10, marginLeft: 50, marginRight: 50 }}>
             <Button
               color="#e67e22"
               onPress={() => navigation.navigate("FavouriteCreate")}

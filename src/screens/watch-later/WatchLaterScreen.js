@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { ScrollView, View } from "react-native";
-import { ListItem, Button } from "react-native-elements";
+import { ScrollView, View, Button } from "react-native";
+import { ListItem } from "react-native-elements";
 import NoResults from "./../search-movie/components/NoResults";
 import MovieDetail from "../search-movie/components/MovieDetail";
 import AppBar from "../../components/app-bar/AppBar";
@@ -45,8 +45,12 @@ const WatchLaterScreen = ({
           ) : (
             <NoResults />
           )}
-          <View style={{ marginTop: "10%", backgroundColor: "#e67e22" }}>
-            <Button onPress={getWatchLaterMovies} title={"Refresh"} />
+          <View style={{ marginTop: "10%", marginLeft: 50, marginRight: 50 }}>
+            <Button
+              color="#e67e22"
+              onPress={getWatchLaterMovies}
+              title={"Refresh"}
+            />
           </View>
         </>
       )}
