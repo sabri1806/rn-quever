@@ -55,7 +55,11 @@ const SearchMovieScreen = ({ navigation, movies, searchMovies }) => {
           source={"search"}
         />
       ) : (
-        <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
+        <MovieList
+          movies={movies}
+          navigation={navigation}
+          onSelectMovie={handleSelectMovie}
+        />
       )}
     </View>
   );

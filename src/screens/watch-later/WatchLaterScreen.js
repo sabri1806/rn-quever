@@ -31,7 +31,7 @@ const WatchLaterScreen = ({
   };
 
   if (!watchLaterMovies) return null;
-  console.log(currentMovie); // eslint-disable-line
+
   return (
     <ScrollView>
       {!currentMovie && (

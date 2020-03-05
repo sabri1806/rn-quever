@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Text, View, Button, StyleSheet, Image } from "react-native";
-import { NavigationActions } from "react-navigation";
+import { View, Button, StyleSheet, Image } from "react-native";
+import { AsyncStorage } from "react-native";
 import * as Google from "expo-google-app-auth";
 // import { Image } from "react-native-elements";
 
@@ -20,6 +20,11 @@ const Login = ({ navigation }) => {
       });
 
       if (result.type === "success") {
+        try {
+          await AsyncStorage.setItem("userEmail", result.user.email);
+        } catch (error) {
+          // Error saving data
+        }
         navigation.setParams({ user: result.user });
         navigation.navigate("Loading", { user: result.user });
         return result.accessToken;

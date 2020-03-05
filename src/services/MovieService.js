@@ -26,11 +26,12 @@ const getFavouriteMovieDetail = favouriteDetailId => {
   );
 };
 
-const saveWatchLaterMovie = (email, omDBId, poster) => {
+const saveWatchLaterMovie = (email, omDBId, poster, title) => {
   const payload = {
     email,
     omDBId,
-    poster
+    poster,
+    title
   };
 
   return axios.post(

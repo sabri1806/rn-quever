@@ -4,15 +4,40 @@ import { View, Button, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import MovieService from "../../../services/MovieService";
 import styles from "./MovieDetail.styles";
+import { AsyncStorage } from "react-native";
 
-const MovieDetail = ({ movie, onBack, source }) => {
+const MovieDetail = ({ movie, onBack, source, navigation }) => {
   const [movieDetail, setMovieDetail] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     MovieService.getMovieDetail(movie.imdbID || movie.omDBId).then(response => {
       setMovieDetail(response.data);
     });
+    const getUserFromStorage = async () => {
+      try {
+        const userEmail = await AsyncStorage.getItem("userEmail");
+        if (userEmail !== null) {
+          setCurrentUser(userEmail);
+        }
+      } catch (error) {
+        console.log("We was not able to recover the user"); // eslint-disable-line
+      }
+    };
+
+    getUserFromStorage();
   }, []);
+
+  const handleWatchLater = () => {
+    MovieService.saveWatchLaterMovie(
+      currentUser,
+      movie.imdbID,
+      movie.Poster,
+      movie.Title
+    ).then(response => {
+      onBack();
+    });
+  };
 
   if (!movieDetail) return null;
 
@@ -65,7 +90,7 @@ const MovieDetail = ({ movie, onBack, source }) => {
                 color="#e67e22"
                 style={styles.button}
                 title="Watch Later"
-                onPress={onBack}
+                onPress={handleWatchLater}
               />
             </View>
           )}

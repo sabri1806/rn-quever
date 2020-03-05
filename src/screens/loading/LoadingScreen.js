@@ -11,7 +11,6 @@ const LoadingScreen = ({ navigation }) => {
       //   navigation.navigate("Login");
       // }
     } catch (err) {
-      console.log("Error Al login...."); // eslint-disable-line
       navigation.navigate("Login");
     }
   });
