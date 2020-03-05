@@ -68,8 +68,10 @@ const getWatchLaterMovies = () => {
   );
 };
 
-const getFavouriteMovies = () => {
-  return axios.get("https://quever-api.appspot.com/api/favorites-movies");
+const getFavouriteMovies = userEmail => {
+  return axios.get(
+    "https://quever-api.appspot.com/api/favorites-movies?email=" + userEmail
+  );
 };
 
 const getPopularMovies = () => {

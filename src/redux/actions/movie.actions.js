@@ -35,9 +35,9 @@ const getWatchLaterMovies = () => async dispatch => {
   }
 };
 
-const getFavouritesMovies = () => async dispatch => {
+const getFavouritesMovies = userEmail => async dispatch => {
   try {
-    const response = await MovieService.getFavouriteMovies();
+    const response = await MovieService.getFavouriteMovies(userEmail);
     dispatch(getFavouritesMoviesSuccess(response.data));
   } catch (err) {
     console.log(err);
