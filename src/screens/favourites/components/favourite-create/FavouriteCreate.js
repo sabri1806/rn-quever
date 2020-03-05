@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Text, Button, Input } from "react-native-elements";
-import { View } from "react-native";
+import { Text, Input } from "react-native-elements";
+import { View, Button } from "react-native";
 import styles from "./FavouriteCreate.styles";
 import MovieService from "../../../../services/MovieService";
 import { AsyncStorage } from "react-native";
@@ -80,6 +80,14 @@ const FavouriteCreate = ({ navigation }) => {
         </View>
         <View style={styles.inputContainer}>
           <Input
+            name="cast"
+            placeholder="cast"
+            value={newFavourite.cast}
+            onChange={text => onChange(text, "cast")}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Input
             name="year"
             placeholder="year"
             value={newFavourite.year}
@@ -88,10 +96,14 @@ const FavouriteCreate = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.btnContainer}>
-        <Button title="Save Favourite" onPress={handleSaveFavourite} />
+        <Button
+          color="#e67e22"
+          title="Save Favourite"
+          onPress={handleSaveFavourite}
+        />
       </View>
       <View style={styles.btnContainer}>
-        <Button title="Back" onPress={backToFavouriteList} />
+        <Button color="#e67e22" title="Back" onPress={backToFavouriteList} />
       </View>
     </View>
   );

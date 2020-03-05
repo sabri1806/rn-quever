@@ -10,6 +10,8 @@ export default {
   },
   btnContainer: {
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
+    marginLeft: 50,
+    marginRight: 50
   }
 };

@@ -1,19 +1,34 @@
 import React from "react";
-import { View, Button, Text } from "react-native";
+import { View, Button } from "react-native";
 import styles from "./FavouriteDetail.styles";
 import Moment from "moment";
+import { Text } from "react-native-elements";
 
 const FavouriteDetail = ({ movie, onBack }) => {
   if (!movie) return null;
 
   return (
     <View style={styles.container}>
-      <Text>{movie.moviename}</Text>
-      <Text>{movie.description}</Text>
-      <Text>{movie.email}</Text>
-      <Text>{movie.year}</Text>
-      <Text>{movie.cast}</Text>
-      <Text>{Moment(movie.createdAt).format("DD/MMM/YYYY")}</Text>
+      <View style={styles.infoContainer}>
+        <Text h4>Movie Info</Text>
+      </View>
+      <View style={styles.text}>
+        <Text h5>Name: {movie.moviename}</Text>
+      </View>
+      <View style={styles.text}>
+        <Text h5>Description {movie.description}</Text>
+      </View>
+      <View style={styles.text}>
+        <Text h5>Year: {movie.year}</Text>
+      </View>
+      <View style={styles.text}>
+        <Text h5>Cast: {movie.cast}</Text>
+      </View>
+      <View style={styles.text}>
+        <Text h5>
+          Creation Date: {Moment(movie.createdAt).format("DD/MMM/YYYY")}
+        </Text>
+      </View>
       <View style={styles.backBtnContainer}>
         <View style={styles.backBtn}>
           <Button
