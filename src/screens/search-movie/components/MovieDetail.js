@@ -29,11 +29,9 @@ const MovieDetail = ({ movie, onBack, source }) => {
 
     getUserFromStorage();
 
-    if (source !== "search") {
-      MovieService.calculateRate(movie.omDBId).then(response => {
-        setAverage(response.data.average || 0);
-      });
-    }
+    MovieService.calculateRate(movie.omDBId).then(response => {
+      setAverage(response.data.average || 0);
+    });
   }, []);
 
   const deleteWatchLater = () => {
@@ -80,11 +78,17 @@ const MovieDetail = ({ movie, onBack, source }) => {
       movie.imdbID,
       movie.Poster,
       movie.Title
-    ).then(response => {
-      Alert.alert("Success", "Movie was added to watch later!", [
-        { text: "OK", onPress: () => onBack() }
-      ]);
-    });
+    )
+      .then(response => {
+        Alert.alert("Success", "Movie was added to watch later!", [
+          { text: "OK", onPress: () => onBack() }
+        ]);
+      })
+      .catch(err => {
+        Alert.alert("Error", "The movie was already added to your list", [
+          { text: "OK", onPress: () => onBack() }
+        ]);
+      });
   };
 
   if (!movieDetail) return null;
@@ -97,12 +101,13 @@ const MovieDetail = ({ movie, onBack, source }) => {
           <View style={{ flex: 1 }}>
             <Image
               source={{ uri: movieDetail.Poster }}
-              style={{ width: 100, height: 200 }}
+              style={{ width: 120, height: 200 }}
             />
           </View>
           <ScrollView
             style={{
               minWidth: 200,
+              maxWidth: 250,
               flex: 1,
               paddingTop: 5,
               paddingRight: 20,
@@ -113,11 +118,11 @@ const MovieDetail = ({ movie, onBack, source }) => {
             <Text>{movieDetail.Plot}</Text>
           </ScrollView>
         </View>
-        {source !== "search" && (
+        <View style={{ marginLeft: 20, marginBottom: 20, marginTop: 10 }}>
+          <Text>Quever Rating: {average}</Text>
+        </View>
+        {source === "search" && (
           <>
-            <View style={{ marginLeft: 20, marginBottom: 20, marginTop: 10 }}>
-              <Text>Quever Rating: {average}</Text>
-            </View>
             <View style={{ marginLeft: 20, marginBottom: 20, marginTop: -10 }}>
               <Text>Rate It:</Text>
             </View>
